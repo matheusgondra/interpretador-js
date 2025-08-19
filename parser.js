@@ -2,6 +2,7 @@ import { NumberLiteral } from "./number-literal.js";
 import { Identifier } from "./identifier.js";
 import { CallExpression } from "./call-expression.js";
 import { Program } from "./program.js";
+import { VariableDeclaration } from "./variable-declaration.js";
 
 export class Parser {
     #tokens = [];
@@ -24,16 +25,25 @@ export class Parser {
 
     #parseExpression() {
         const token = this.#peek();
-        const nextToken = this.#tokens[this.#position + 1];
+        
+        if (token.type === "VAR") {
+            return this.#parseVariableDeclaration();
+        }
 
-        if (token.type === "IDENTIFIER" && nextToken.type === "LPAREN") {
-            return this.#parseCallExpression();
+        if (token.type === "IDENTIFIER") {
+            const nextToken = this.#tokens[this.#position + 1];
+
+            const isFunctionCall = nextToken.type === "LPAREN";
+            if (isFunctionCall) {
+                return this.#parseCallExpression();
+            }
+
+            return this.#parseIdentifier();
         }
 
         if (token.type === "NUMBER") {
             return this.#parseNumber();
         }
-
         throw new Error("Invalid expression");
     }
     
@@ -54,6 +64,15 @@ export class Parser {
         this.#expect("RPAREN");
 
         return new CallExpression(name.value, args);
+    }
+
+    #parseVariableDeclaration() {
+        this.#expect("VAR");
+        const name = this.#expect("IDENTIFIER");
+        this.#expect("ASSIGNMENT");
+        const value = this.#parseExpression();
+
+        return new VariableDeclaration(name, value);
     }
 
     #peek() {

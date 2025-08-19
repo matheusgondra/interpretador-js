@@ -6,6 +6,8 @@ export class Token {
     static RPAREN = new Token("RPAREN", ")");
     static COMMA = new Token("COMMA", ",");
     static SEMICOLON = new Token("SEMICOLON", ";");
+    static VAR = new Token("VAR", "var");
+    static ASSIGNMENT = new Token("ASSIGNMENT", "=");
 
     constructor(type, value = null) {
         this.#type = type;

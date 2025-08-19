@@ -28,7 +28,7 @@ export class Lexer {
 
             if (this.#isIdentifier()) {
                 const value = this.#identifier();
-                tokens.push(new Token("IDENTIFIER", value));
+                tokens.push(value);
                 continue;
             }
 
@@ -52,6 +52,12 @@ export class Lexer {
 
             if (this.#currentChar === ";") {
                 tokens.push(Token.SEMICOLON);
+                this.#advance();
+                continue;
+            }
+
+            if (this.#currentChar === "=") {
+                tokens.push(Token.ASSIGNMENT);
                 this.#advance();
                 continue;
             }
@@ -87,7 +93,11 @@ export class Lexer {
             this.#advance();
         }
 
-        return result;
+        if (result === "var") {
+            return Token.VAR;
+        }
+
+        return new Token("IDENTIFIER", result);
     }
 
     #advance() {

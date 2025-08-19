@@ -18,11 +18,11 @@ const content = fs.readFileSync(code, { encoding: "utf-8" });
 
 const lexer = new Lexer(content);
 const tokens = lexer.tokenize();
-// console.log("Tokens:", tokens.map(token => token.toString()).join(", "));
+// console.log("Tokens:", tokens.map(token => token.toString()));
 
 const parser = new Parser(tokens);
 const ast = parser.parse();
-// console.log(JSON.stringify(ast, null, 2)); // AST (Abstract Syntax Tree)
+// console.log("AST:", JSON.stringify(ast, null, 2)); // AST (Abstract Syntax Tree)
 
 const evaluator = new Evaluator();
 const result = evaluator.evaluate(ast);
