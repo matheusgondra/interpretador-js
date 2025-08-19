@@ -1,7 +1,7 @@
 import { ASTNode } from "./ast-node.js";
 
 export class Identifier extends ASTNode {
-    constructor(name) {
+    constructor(name: string) {
         super("Identifier", name);
     }
 }

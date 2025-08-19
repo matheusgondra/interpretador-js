@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import fs from "node:fs";
-import { Evaluator } from "./src/evaluator/evaluator.js";
-import { Lexer } from "./src/lexer/lexer.js";
-import { Parser } from "./src/parser/parser.js";
+import { Evaluator } from "./evaluator/evaluator.js";
+import { Lexer } from "./lexer/lexer.js";
+import { Parser } from "./parser/parser.js";
 
 const [_nodeBinary, _fileName, code] = process.argv;
 if (!code) {

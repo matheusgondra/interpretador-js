@@ -12,6 +12,12 @@
   "license": "ISC",
   "packageManager": "pnpm@10.13.1",
   "bin": {
-    "gondrac": "index.js"
+    "gondrac": "dist/index.js"
+  },
+  "dependencies": {
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0"
   }
 }
