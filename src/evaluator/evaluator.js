@@ -1,8 +1,5 @@
-import { CallExpression } from "./call-expression.js";
-import { Identifier } from "./identifier.js";
-import { NumberLiteral } from "./number-literal.js";
-import { Program } from "./program.js";
-import { VariableDeclaration } from "./variable-declaration.js";
+import { CallExpression } from "../ast/call-expression.js";
+import { Identifier, NumberLiteral, Program, VariableDeclaration } from "../ast/index.js";
 
 export class Evaluator {
     #functions = {

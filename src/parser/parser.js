@@ -1,8 +1,10 @@
-import { NumberLiteral } from "./number-literal.js";
-import { Identifier } from "./identifier.js";
-import { CallExpression } from "./call-expression.js";
-import { Program } from "./program.js";
-import { VariableDeclaration } from "./variable-declaration.js";
+import { 
+    NumberLiteral,
+    Identifier,
+    CallExpression,
+    Program,
+    VariableDeclaration
+} from "../ast/index.js";
 
 export class Parser {
     #tokens = [];
